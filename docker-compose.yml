@@ -1,0 +1,9 @@
+nfsen:
+    build: .
+    hostname: nfsen
+    ports:
+    - "8080:80"
+    - "9995:9995"
+    privileged: true
+    cap_add:
+    - ALL
