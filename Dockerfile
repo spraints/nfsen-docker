@@ -13,7 +13,7 @@ RUN apt-get install -y wget
 # NFSEN
 WORKDIR /usr/src
 #RUN ["wget", "http://sourceforge.net/projects/nfsen/files/stable/nfsen-1.3.7/nfsen-1.3.7.tar.gz"]
-RUN ["wget", "http://sourceforge.net/projects/nfsen/files/stable/nfsen-1.3.6p1/nfsen-1.3.6p1.tar.gz"]
+RUN ["wget", "--no-check-certificate", "http://sourceforge.net/projects/nfsen/files/stable/nfsen-1.3.6p1/nfsen-1.3.6p1.tar.gz"]
 RUN ["tar", "zxvf", "nfsen-1.3.6p1.tar.gz"]
 
 WORKDIR /usr/src/nfsen-1.3.6p1
