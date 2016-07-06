@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y nfdump \
   apache2 libapache2-mod-php5 php5-common \
   rrdtool libmailtools-perl librrds-perl libio-socket-ssl-perl
 
+RUN apt-get install -y wget
+
 # NFSEN
 WORKDIR /usr/src
 #RUN ["wget", "http://sourceforge.net/projects/nfsen/files/stable/nfsen-1.3.7/nfsen-1.3.7.tar.gz"]
