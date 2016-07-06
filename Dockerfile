@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y nfdump \
   apache2 libapache2-mod-php5 php5-common \
   rrdtool libmailtools-perl librrds-perl libio-socket-ssl-perl
 
-RUN apt-get install -y wget
+RUN apt-get install -y wget rsyslog
 
 # NFSEN
 WORKDIR /usr/src
@@ -22,7 +22,7 @@ WORKDIR /usr/src/nfsen-1.3.6p1
 ADD ["nfsen.conf", "/etc/nfsen.conf"]
 
 RUN ["mkdir", "-p", "/data/nfsen"]
-RUN "ipcs -s; ./install.pl /etc/nfsen.conf"
+RUN rsyslogd -c5; ipcs -s; ./install.pl /etc/nfsen.conf
 
 # RUN APACHE2
 ADD ["000-default.conf", "/etc/apache2/sites-available/000-default.conf"]
