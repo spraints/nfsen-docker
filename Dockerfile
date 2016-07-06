@@ -22,15 +22,14 @@ WORKDIR /usr/src/nfsen-1.3.6p1
 ADD ["nfsen.conf", "/etc/nfsen.conf"]
 
 RUN ["mkdir", "-p", "/data/nfsen"]
-RUN rsyslogd -c5; ipcs -s; ./install.pl /etc/nfsen.conf
+RUN rsyslogd -c5; ipcs -s; ./install.pl /etc/nfsen.conf || (ipcrm sem 0 && ./install.pl /etc/nfsen.conf)
 
 # RUN APACHE2
 ADD ["000-default.conf", "/etc/apache2/sites-available/000-default.conf"]
-RUN ["/usr/sbin/apache2", "-DFOREGROUND"]
 
 # RUN NFSEN
 WORKDIR /data/nfsen/bin
-RUN ["./nfsen", "start"]
+ENTRYPOINT rsyslogd -c5 && apachectl start && ./nfsen start && bash -l
 
 EXPOSE 80
 EXPOSE 9995
