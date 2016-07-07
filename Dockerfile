@@ -1,4 +1,6 @@
-FROM ubuntu:12.04.5
+# docker pull 32bit/ubuntu:14.04 && docker tag 32bit/ubuntu:14.04 nfsen-base:latest
+# docker pull ubuntu:12.04.5     && docker tag ubuntu:12.04.5     nfsen-base:latest
+FROM nfsen-base:latest
 MAINTAINER Matt Burke <spraints@gmail.com>
 
 # https://blog.bravi.org/?p=1091
